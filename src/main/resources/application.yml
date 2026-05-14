@@ -1,0 +1,121 @@
+spring:
+  application:
+    name: hdl-judge
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+  data:
+    redis:
+      repositories:
+        enabled: false
+
+server:
+  port: 8080
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when_authorized
+
+hdljudge:
+  jwt:
+    issuer: hdl-judge
+    secret: ${JWT_SECRET:change-me-please-use-a-long-random-secret-at-least-32-bytes}
+    access-ttl-seconds: 900
+    refresh-ttl-seconds: 604800
+  judge:
+    worker-pool-size: 2
+    queue-capacity: 32
+    docker:
+      socket: ${DOCKER_HOST:unix:///var/run/docker.sock}
+      worker-image: hdl-judge/worker-verilog:latest
+      network: none
+      read-only-root: true
+      cpu-quota-percent: 50
+      memory-limit-mb: 256
+      pids-limit: 64
+    limits:
+      default-time-limit-ns: 100000000
+      default-wall-time-limit-ms: 5000
+      default-memory-limit-mb: 256
+  synthesis:
+    cache-ttl-seconds: 86400
+    max-gate-count: 500
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/hdljudge?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+    username: ${DB_USERNAME:hdljudge}
+    password: ${DB_PASSWORD:hdljudge}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: jdbc:mysql://mysql:3306/hdljudge?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+    username: ${DB_USERNAME:hdljudge}
+    password: ${DB_PASSWORD:hdljudge}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  data:
+    redis:
+      host: ${REDIS_HOST:redis}
+      port: ${REDIS_PORT:6379}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:h2:mem:hdljudge;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  flyway:
+    enabled: false
+  data:
+    redis:
+      host: localhost
+      port: 6379
