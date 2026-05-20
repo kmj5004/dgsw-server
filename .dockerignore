@@ -1,0 +1,12 @@
+.git
+.gitignore
+.gradle
+build
+.idea
+*.iml
+.vscode
+.DS_Store
+HELP.md
+README.md
+docs
+docker-compose.yml

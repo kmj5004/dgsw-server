@@ -1,0 +1,83 @@
+services:
+  worker-verilog:
+    build:
+      context: ./docker/worker-verilog
+      dockerfile: Dockerfile
+    image: hdl-judge/worker-verilog:latest
+    command: "true"
+
+  worker-vhdl:
+    build:
+      context: ./docker/worker-vhdl
+      dockerfile: Dockerfile
+    image: hdl-judge/worker-vhdl:latest
+    command: "true"
+
+  mysql:
+    image: mysql:8.0
+    container_name: hdljudge-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hdljudge
+      MYSQL_USER: hdljudge
+      MYSQL_PASSWORD: hdljudge
+      TZ: Asia/Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: hdljudge-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hdljudge-app
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      worker-verilog:
+        condition: service_completed_successfully
+      worker-vhdl:
+        condition: service_completed_successfully
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_USERNAME: hdljudge
+      DB_PASSWORD: hdljudge
+      REDIS_HOST: redis
+      JWT_SECRET: ${JWT_SECRET:-please-override-this-secret-with-at-least-32-bytes}
+      DOCKER_HOST: unix:///var/run/docker.sock
+    ports:
+      - "8080:8080"
+    volumes:
+
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  mysql-data:
+  redis-data:
