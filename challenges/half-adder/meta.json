@@ -1,0 +1,42 @@
+{
+  "slug": "half-adder",
+  "title": "Half Adder",
+  "description": "두 비트 a, b를 입력받아 합(sum)과 캐리(carry)를 출력하는 half adder를 작성하세요.\n\n- sum   = a XOR b\n- carry = a AND b\n\n4가지 입력 조합 모두에 대해 정확한 출력이 나와야 합니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": [
+    "arithmetic",
+    "beginner",
+    "combinational",
+    "stage-1"
+  ],
+  "testVectors": [
+    {
+      "ordering": 1,
+      "stimulusJson": "{\"a\":0,\"b\":0}",
+      "expectedJson": "{\"sum\":0,\"carry\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 2,
+      "stimulusJson": "{\"a\":0,\"b\":1}",
+      "expectedJson": "{\"sum\":1,\"carry\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 3,
+      "stimulusJson": "{\"a\":1,\"b\":0}",
+      "expectedJson": "{\"sum\":1,\"carry\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 4,
+      "stimulusJson": "{\"a\":1,\"b\":1}",
+      "expectedJson": "{\"sum\":0,\"carry\":1}",
+      "weight": 1
+    }
+  ]
+}

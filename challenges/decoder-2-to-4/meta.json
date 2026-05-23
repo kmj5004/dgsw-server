@@ -1,0 +1,42 @@
+{
+  "slug": "decoder-2-to-4",
+  "title": "2-to-4 Decoder",
+  "description": "2비트 입력 sel을 받아 4비트 one-hot 코드 y를 출력하는 디코더를 작성하세요.\n\n- sel = 0 -> y = 4'b0001 (= 1)\n- sel = 1 -> y = 4'b0010 (= 2)\n- sel = 2 -> y = 4'b0100 (= 4)\n- sel = 3 -> y = 4'b1000 (= 8)",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": [
+    "beginner",
+    "combinational",
+    "decoder",
+    "stage-1"
+  ],
+  "testVectors": [
+    {
+      "ordering": 1,
+      "stimulusJson": "{\"sel\":0}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 2,
+      "stimulusJson": "{\"sel\":1}",
+      "expectedJson": "{\"y\":2}",
+      "weight": 1
+    },
+    {
+      "ordering": 3,
+      "stimulusJson": "{\"sel\":2}",
+      "expectedJson": "{\"y\":4}",
+      "weight": 1
+    },
+    {
+      "ordering": 4,
+      "stimulusJson": "{\"sel\":3}",
+      "expectedJson": "{\"y\":8}",
+      "weight": 1
+    }
+  ]
+}

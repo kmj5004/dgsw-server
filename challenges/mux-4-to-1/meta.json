@@ -1,0 +1,17 @@
+{
+  "slug": "mux-4-to-1",
+  "title": "4-to-1 MUX",
+  "description": "4비트 입력 in과 2비트 선택 신호 sel을 받아 in[sel] 비트를 y로 출력하는 4:1 멀티플렉서를 작성하세요.\n\n예: in=4'b1010 일 때\n- sel=0 -> y = in[0] = 0\n- sel=1 -> y = in[1] = 1\n- sel=2 -> y = in[2] = 0\n- sel=3 -> y = in[3] = 1",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "MEDIUM",
+  "tags": ["combinational", "mux", "stage-1"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"in\":10,\"sel\":0}", "expectedJson": "{\"y\":0}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"in\":10,\"sel\":1}", "expectedJson": "{\"y\":1}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"in\":10,\"sel\":2}", "expectedJson": "{\"y\":0}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"in\":10,\"sel\":3}", "expectedJson": "{\"y\":1}", "weight": 1}
+  ]
+}

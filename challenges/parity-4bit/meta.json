@@ -1,0 +1,19 @@
+{
+  "slug": "parity-4bit",
+  "title": "4-bit Odd Parity",
+  "description": "4비트 입력 a 안의 1의 개수가 홀수면 p=1, 짝수면 p=0 인 회로 (홀수 패리티 비트 생성기).\n\nVerilog 의 **reduction 연산자** `^a` 가 한 줄로 정확히 그 의미입니다 — `a[3] ^ a[2] ^ a[1] ^ a[0]` 와 같습니다.\n\n```\nassign p = ^a;\n```\n\n예시:\n- a = 4'b0000 (1의 개수 0개, 짝수) -> p = 0\n- a = 4'b0001 (1개)               -> p = 1\n- a = 4'b0011 (2개)               -> p = 0\n- a = 4'b0111 (3개)               -> p = 1\n- a = 4'b1111 (4개)               -> p = 0\n\n패리티는 데이터 통신에서 **1비트 오류 검출** 에 사용됩니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": ["combinational", "vector", "parity", "stage-2"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"a\":0}",  "expectedJson": "{\"p\":0}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"a\":1}",  "expectedJson": "{\"p\":1}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"a\":3}",  "expectedJson": "{\"p\":0}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"a\":7}",  "expectedJson": "{\"p\":1}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"a\":15}", "expectedJson": "{\"p\":0}", "weight": 1},
+    {"ordering": 6, "stimulusJson": "{\"a\":10}", "expectedJson": "{\"p\":0}", "weight": 1}
+  ]
+}

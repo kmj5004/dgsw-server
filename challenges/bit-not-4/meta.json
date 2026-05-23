@@ -1,0 +1,18 @@
+{
+  "slug": "bit-not-4",
+  "title": "4-bit Inverter (Vector NOT)",
+  "description": "4비트 벡터 a 의 모든 비트를 한꺼번에 반전하는 회로입니다. Verilog 의 `~` 연산자는 입력의 비트 폭에 맞춰 자동으로 비트별로 적용됩니다.\n\n```\nassign y = ~a;     // a, y 가 [3:0] 이라면 4비트 모두 반전\n```\n\n예시:\n- a = 4'b1010 (10) -> y = 4'b0101 (5)\n- a = 4'b0000 (0)  -> y = 4'b1111 (15)\n- a = 4'b1111 (15) -> y = 4'b0000 (0)\n\nStage 0 의 `gate-not` 과 동일한 연산자지만 입출력이 1비트가 아닌 4비트 벡터라는 점이 다릅니다. 이게 익숙해지면 4-bit Adder, MUX 등 다비트 회로로 자연스럽게 이어집니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": ["combinational", "vector", "stage-1"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"a\":0}",  "expectedJson": "{\"y\":15}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"a\":15}", "expectedJson": "{\"y\":0}",  "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"a\":10}", "expectedJson": "{\"y\":5}",  "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"a\":5}",  "expectedJson": "{\"y\":10}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"a\":1}",  "expectedJson": "{\"y\":14}", "weight": 1}
+  ]
+}

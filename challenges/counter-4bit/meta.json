@@ -1,0 +1,18 @@
+{
+  "slug": "counter-4bit",
+  "title": "4-bit Synchronous Counter",
+  "description": "clk 의 상승에지마다 1씩 증가하는 4비트 카운터를 작성하세요. rst 가 1이면 0 으로 동기 리셋. 15 다음은 자연스럽게 0 으로 wrap-around 됩니다.\n\n```\nalways @(posedge clk) begin\n    if (rst) count <= 0;\n    else     count <= count + 1;\nend\n```\n\n순차 회로의 가장 흔한 응용 — 이 카운터를 변형해 modulo-N, up/down 카운터 등으로 확장할 수 있습니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "MEDIUM",
+  "tags": ["sequential", "counter", "stage-3"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"rst\":1}",          "expectedJson": "{\"count\":0}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"rst\":0,\"after\":1}", "expectedJson": "{\"count\":1}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"rst\":0,\"after\":4}", "expectedJson": "{\"count\":4}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"rst\":0,\"after\":9}", "expectedJson": "{\"count\":9}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"rst\":0,\"after\":16}","expectedJson": "{\"count\":0}", "weight": 1}
+  ]
+}

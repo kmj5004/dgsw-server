@@ -1,0 +1,19 @@
+{
+  "slug": "adder-4bit",
+  "title": "4-bit Adder",
+  "description": "4비트 a와 b를 더해 5비트 합 s를 출력하는 가산기를 작성하세요.\n\ns의 최상위 비트는 carry-out 역할을 합니다.\n\n예시:\n- a=15, b=1  -> s=16  (5'b10000)\n- a=15, b=15 -> s=30  (5'b11110)",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "MEDIUM",
+  "tags": ["combinational", "arithmetic", "stage-2"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"a\":0,\"b\":0}", "expectedJson": "{\"s\":0}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"a\":1,\"b\":2}", "expectedJson": "{\"s\":3}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"a\":7,\"b\":8}", "expectedJson": "{\"s\":15}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"a\":15,\"b\":15}", "expectedJson": "{\"s\":30}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"a\":10,\"b\":5}", "expectedJson": "{\"s\":15}", "weight": 1},
+    {"ordering": 6, "stimulusJson": "{\"a\":15,\"b\":1}", "expectedJson": "{\"s\":16}", "weight": 1}
+  ]
+}

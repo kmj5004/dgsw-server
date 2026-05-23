@@ -1,0 +1,18 @@
+{
+  "slug": "subtractor-4bit",
+  "title": "4-bit Subtractor",
+  "description": "4비트 a 에서 b 를 뺀 diff 와 borrow (a < b 일 때 1) 를 출력하는 빼기 회로를 작성하세요.\n\n- a >= b 인 경우: diff = a - b, borrow = 0\n- a <  b 인 경우: diff 는 4비트 wrap-around (5 - 8 = 4'b1101 = 13), borrow = 1\n\n2의 보수 표현을 사용해 가산기로 구현해도 좋습니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "MEDIUM",
+  "tags": ["combinational", "arithmetic", "stage-2"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"a\":5,\"b\":3}",  "expectedJson": "{\"diff\":2,\"borrow\":0}",  "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"a\":0,\"b\":0}",  "expectedJson": "{\"diff\":0,\"borrow\":0}",  "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"a\":2,\"b\":5}",  "expectedJson": "{\"diff\":13,\"borrow\":1}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"a\":15,\"b\":1}", "expectedJson": "{\"diff\":14,\"borrow\":0}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"a\":8,\"b\":8}",  "expectedJson": "{\"diff\":0,\"borrow\":0}",  "weight": 1}
+  ]
+}

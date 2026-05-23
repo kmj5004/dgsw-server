@@ -1,0 +1,41 @@
+{
+  "slug": "gate-xor",
+  "title": "XOR Gate",
+  "description": "두 입력 a, b 가 **서로 다를 때만** y 가 1 이 되는 XOR (배타적 OR) 게이트를 작성하세요.\n\n```\nassign y = a ^ b;\n```\n\n진리표:\n\n| a | b | y |\n|---|---|---|\n| 0 | 0 | 0 |\n| 0 | 1 | 1 |\n| 1 | 0 | 1 |\n| 1 | 1 | 0 |\n\nVerilog 비트 XOR 연산자는 캐럿(`^`) 입니다. 이 게이트가 익숙해지면 half-adder 의 sum 비트가 어떻게 만들어지는지 보입니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": [
+    "combinational",
+    "gate",
+    "stage-0"
+  ],
+  "testVectors": [
+    {
+      "ordering": 1,
+      "stimulusJson": "{\"a\":0,\"b\":0}",
+      "expectedJson": "{\"y\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 2,
+      "stimulusJson": "{\"a\":0,\"b\":1}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 3,
+      "stimulusJson": "{\"a\":1,\"b\":0}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 4,
+      "stimulusJson": "{\"a\":1,\"b\":1}",
+      "expectedJson": "{\"y\":0}",
+      "weight": 1
+    }
+  ]
+}

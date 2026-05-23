@@ -1,0 +1,41 @@
+{
+  "slug": "gate-nand",
+  "title": "NAND Gate",
+  "description": "AND 의 출력을 NOT 으로 뒤집은 것이 NAND. 즉 a, b 가 **둘 다 1일 때만 0**, 나머지 경우엔 1.\n\n```\nassign y = ~(a & b);\n```\n\n진리표:\n\n| a | b | y |\n|---|---|---|\n| 0 | 0 | 1 |\n| 0 | 1 | 1 |\n| 1 | 0 | 1 |\n| 1 | 1 | 0 |\n\nNAND 는 **만능(universal) 게이트** 입니다 — NAND 게이트만 충분히 모으면 NOT, AND, OR 를 모두 만들 수 있습니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": [
+    "combinational",
+    "gate",
+    "stage-0"
+  ],
+  "testVectors": [
+    {
+      "ordering": 1,
+      "stimulusJson": "{\"a\":0,\"b\":0}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 2,
+      "stimulusJson": "{\"a\":0,\"b\":1}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 3,
+      "stimulusJson": "{\"a\":1,\"b\":0}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 4,
+      "stimulusJson": "{\"a\":1,\"b\":1}",
+      "expectedJson": "{\"y\":0}",
+      "weight": 1
+    }
+  ]
+}

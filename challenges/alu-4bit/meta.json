@@ -1,0 +1,21 @@
+{
+  "slug": "alu-4bit",
+  "title": "4-bit ALU",
+  "description": "4비트 ALU (Arithmetic Logic Unit) — 작은 \"계산기\" 의 핵심 부품을 만듭니다.\n\n2비트 연산 코드 op 에 따라 a, b 를 처리해 5비트 y 로 출력:\n\n| op | 연산 | 동작 |\n|---|---|---|\n| `2'b00` | ADD | y = a + b (carry-out 포함 5비트) |\n| `2'b01` | SUB | y = a − b (borrow 발생 시 두 보수 wrap-around: 0−1 = 5'b11111 = 31) |\n| `2'b10` | AND | y = a & b (5비트로 0-extend) |\n| `2'b11` | OR  | y = a \\| b |\n\n```\nalways @(*) begin\n    case (op)\n        ...\n    endcase\n end\n```\n\n**왜 이게 capstone 인가**: 이 한 모듈이 동작하면 *진짜 작은 계산기*의 핵심을 갖춘 것 — `add/sub` 산술과 `and/or` 비트 연산을 하나의 하드웨어로 통합한 셈입니다. 이전 단계의 full-adder, adder-4bit, subtractor-4bit, mux-4-to-1 (op 으로 선택) 의 개념이 모두 합쳐집니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "HARD",
+  "tags": ["combinational", "arithmetic", "alu", "stage-2", "capstone"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"a\":3,\"b\":2,\"op\":0}",   "expectedJson": "{\"y\":5}",  "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"a\":15,\"b\":15,\"op\":0}", "expectedJson": "{\"y\":30}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"a\":5,\"b\":2,\"op\":1}",   "expectedJson": "{\"y\":3}",  "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"a\":0,\"b\":1,\"op\":1}",   "expectedJson": "{\"y\":31}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"a\":12,\"b\":10,\"op\":2}", "expectedJson": "{\"y\":8}",  "weight": 1},
+    {"ordering": 6, "stimulusJson": "{\"a\":15,\"b\":0,\"op\":2}",  "expectedJson": "{\"y\":0}",  "weight": 1},
+    {"ordering": 7, "stimulusJson": "{\"a\":12,\"b\":10,\"op\":3}", "expectedJson": "{\"y\":14}", "weight": 1},
+    {"ordering": 8, "stimulusJson": "{\"a\":0,\"b\":0,\"op\":3}",   "expectedJson": "{\"y\":0}",  "weight": 1}
+  ]
+}

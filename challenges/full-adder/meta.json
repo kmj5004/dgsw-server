@@ -1,0 +1,66 @@
+{
+  "slug": "full-adder",
+  "title": "Full Adder",
+  "description": "캐리 입력 cin을 포함한 1비트 full adder를 작성하세요.\n\n- sum  = a XOR b XOR cin\n- cout = (a AND b) OR (cin AND (a XOR b))\n\n8가지 입력 조합(2^3)을 모두 통과해야 만점입니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": [
+    "arithmetic",
+    "beginner",
+    "combinational",
+    "stage-1"
+  ],
+  "testVectors": [
+    {
+      "ordering": 1,
+      "stimulusJson": "{\"a\":0,\"b\":0,\"cin\":0}",
+      "expectedJson": "{\"sum\":0,\"cout\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 2,
+      "stimulusJson": "{\"a\":0,\"b\":0,\"cin\":1}",
+      "expectedJson": "{\"sum\":1,\"cout\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 3,
+      "stimulusJson": "{\"a\":0,\"b\":1,\"cin\":0}",
+      "expectedJson": "{\"sum\":1,\"cout\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 4,
+      "stimulusJson": "{\"a\":0,\"b\":1,\"cin\":1}",
+      "expectedJson": "{\"sum\":0,\"cout\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 5,
+      "stimulusJson": "{\"a\":1,\"b\":0,\"cin\":0}",
+      "expectedJson": "{\"sum\":1,\"cout\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 6,
+      "stimulusJson": "{\"a\":1,\"b\":0,\"cin\":1}",
+      "expectedJson": "{\"sum\":0,\"cout\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 7,
+      "stimulusJson": "{\"a\":1,\"b\":1,\"cin\":0}",
+      "expectedJson": "{\"sum\":0,\"cout\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 8,
+      "stimulusJson": "{\"a\":1,\"b\":1,\"cin\":1}",
+      "expectedJson": "{\"sum\":1,\"cout\":1}",
+      "weight": 1
+    }
+  ]
+}

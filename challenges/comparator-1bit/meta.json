@@ -1,0 +1,17 @@
+{
+  "slug": "comparator-1bit",
+  "title": "1-bit Comparator",
+  "description": "1비트 입력 a, b 를 비교해 eq, gt, lt 셋 중 하나만 1로 켜지는 비교기를 작성하세요.\n\n- eq : a == b\n- gt : a > b\n- lt : a < b\n\n네 입력 조합 모두를 통과해야 만점입니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": ["combinational", "comparator", "stage-2"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"a\":0,\"b\":0}", "expectedJson": "{\"eq\":1,\"gt\":0,\"lt\":0}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"a\":0,\"b\":1}", "expectedJson": "{\"eq\":0,\"gt\":0,\"lt\":1}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"a\":1,\"b\":0}", "expectedJson": "{\"eq\":0,\"gt\":1,\"lt\":0}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"a\":1,\"b\":1}", "expectedJson": "{\"eq\":1,\"gt\":0,\"lt\":0}", "weight": 1}
+  ]
+}

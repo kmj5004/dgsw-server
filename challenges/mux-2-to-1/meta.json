@@ -1,0 +1,42 @@
+{
+  "slug": "mux-2-to-1",
+  "title": "2-to-1 MUX",
+  "description": "선택 신호 sel에 따라 입력 a와 b 중 하나를 출력하는 2:1 멀티플렉서를 작성하세요.\n\n- sel = 0 -> y = a\n- sel = 1 -> y = b",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": [
+    "beginner",
+    "combinational",
+    "mux",
+    "stage-1"
+  ],
+  "testVectors": [
+    {
+      "ordering": 1,
+      "stimulusJson": "{\"a\":0,\"b\":1,\"sel\":0}",
+      "expectedJson": "{\"y\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 2,
+      "stimulusJson": "{\"a\":0,\"b\":1,\"sel\":1}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 3,
+      "stimulusJson": "{\"a\":1,\"b\":0,\"sel\":0}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 4,
+      "stimulusJson": "{\"a\":1,\"b\":0,\"sel\":1}",
+      "expectedJson": "{\"y\":0}",
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "gate-or",
+  "title": "OR Gate",
+  "description": "두 입력 a, b **중 하나라도 1 이면** y 가 1 이 되는 OR 게이트를 작성하세요.\n\n```\nassign y = a | b;\n```\n\n진리표:\n\n| a | b | y |\n|---|---|---|\n| 0 | 0 | 0 |\n| 0 | 1 | 1 |\n| 1 | 0 | 1 |\n| 1 | 1 | 1 |\n\nVerilog 비트 OR 연산자는 파이프 `|` 입니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": [
+    "combinational",
+    "gate",
+    "stage-0"
+  ],
+  "testVectors": [
+    {
+      "ordering": 1,
+      "stimulusJson": "{\"a\":0,\"b\":0}",
+      "expectedJson": "{\"y\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 2,
+      "stimulusJson": "{\"a\":0,\"b\":1}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 3,
+      "stimulusJson": "{\"a\":1,\"b\":0}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    },
+    {
+      "ordering": 4,
+      "stimulusJson": "{\"a\":1,\"b\":1}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    }
+  ]
+}

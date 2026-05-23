@@ -1,0 +1,18 @@
+{
+  "slug": "dff-with-rst",
+  "title": "D Flip-Flop with Synchronous Reset",
+  "description": "clk 의 상승에지마다 d 값을 q 로 옮기는 D 플립플롭을 작성하세요. 단, rst 가 1이면 q 는 0 으로 동기 리셋됩니다.\n\n```\nalways @(posedge clk) begin\n    if (rst) q <= 0;\n    else     q <= d;\nend\n```\n\n비동기 리셋(`always @(posedge clk or posedge rst)`) 이 아닌 **동기** 리셋 임에 유의하세요. 이 챌린지는 순차 회로 입문용입니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": ["sequential", "flipflop", "stage-3"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"rst\":1,\"d\":1}", "expectedJson": "{\"q\":0}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"rst\":0,\"d\":1}", "expectedJson": "{\"q\":1}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"rst\":0,\"d\":0}", "expectedJson": "{\"q\":0}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"rst\":0,\"d\":1}", "expectedJson": "{\"q\":1}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"rst\":1}",         "expectedJson": "{\"q\":0}", "weight": 1}
+  ]
+}

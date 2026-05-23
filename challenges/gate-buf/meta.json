@@ -1,0 +1,30 @@
+{
+  "slug": "gate-buf",
+  "title": "Buffer (Passthrough)",
+  "description": "Verilog 의 가장 기본 — 입력 a 를 그대로 y 로 내보내는 회로입니다.\n\n```\nassign y = a;\n```\n\n이 한 줄을 통과하면 다음을 익힌 것이 됩니다:\n- `module ... endmodule` 블록 구조\n- `input` / `output` 포트 방향\n- `assign` 으로 wire 값을 결정하는 법\n\n다음 챌린지부터 진짜 게이트가 등장합니다.",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": [
+    "combinational",
+    "first-step",
+    "gate",
+    "stage-0"
+  ],
+  "testVectors": [
+    {
+      "ordering": 1,
+      "stimulusJson": "{\"a\":0}",
+      "expectedJson": "{\"y\":0}",
+      "weight": 1
+    },
+    {
+      "ordering": 2,
+      "stimulusJson": "{\"a\":1}",
+      "expectedJson": "{\"y\":1}",
+      "weight": 1
+    }
+  ]
+}

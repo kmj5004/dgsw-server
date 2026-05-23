@@ -1,0 +1,21 @@
+{
+  "slug": "seq-detect-1101",
+  "title": "Sequence Detector — 1101",
+  "description": "입력 비트열에서 \"1101\" 패턴을 검출해 한 사이클 동안 detected=1 을 출력하는 Moore FSM 을 작성하세요.\n\n- 매 clk 상승 에지마다 x 를 한 비트씩 받음\n- rst=1 이면 동기 리셋\n- **오버랩 허용**: 입력이 ...11011... 이면 첫 1101 과 그에 이어지는 1101 둘 다 검출\n\n5 개 상태 (S0~S4) 의 Moore FSM 으로 구현하는 게 일반적입니다 — skeleton 의 다음 상태 표를 따라가면 됩니다.\n\n## 평가 입력 (in 순서)\n```\n[reset]  1 1 0 1 1 0 1\n```\n- vec 1: 리셋 어서트 → detected=0\n- vec 2~5: 1, 1, 0, 1 → 4번째에 첫 매치 (detected=1 at vec 5)\n- vec 6~8: 1, 0, 1 → S4 에서 1 받아 S2 로, 그 뒤 0,1 거치며 또 한 번 매치 (detected=1 at vec 8)",
+  "language": "VERILOG",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "HARD",
+  "tags": ["sequential", "fsm", "stage-4"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"rst\":1,\"x\":0}", "expectedJson": "{\"detected\":0}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"rst\":0,\"x\":1}", "expectedJson": "{\"detected\":0}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"rst\":0,\"x\":1}", "expectedJson": "{\"detected\":0}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"rst\":0,\"x\":0}", "expectedJson": "{\"detected\":0}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"rst\":0,\"x\":1}", "expectedJson": "{\"detected\":1}", "weight": 1},
+    {"ordering": 6, "stimulusJson": "{\"rst\":0,\"x\":1}", "expectedJson": "{\"detected\":0}", "weight": 1},
+    {"ordering": 7, "stimulusJson": "{\"rst\":0,\"x\":0}", "expectedJson": "{\"detected\":0}", "weight": 1},
+    {"ordering": 8, "stimulusJson": "{\"rst\":0,\"x\":1}", "expectedJson": "{\"detected\":1}", "weight": 1}
+  ]
+}
