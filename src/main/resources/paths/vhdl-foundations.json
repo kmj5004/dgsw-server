@@ -1,0 +1,53 @@
+{
+  "slug": "vhdl-foundations",
+  "title": "VHDL 입문 — 게이트에서 카운터까지",
+  "language": "VHDL",
+  "difficulty": "MEDIUM",
+  "estimatedHours": 4,
+  "goal": "Verilog 와 다른 VHDL 의 idiom(signal assignment `<=`, std_logic, numeric_std, process(clk) + rising_edge) 을 한 번에 훑습니다. 끝나면 동기 카운터까지 손으로 구현해본 셈.",
+  "description": "본 path 는 VHDL 을 처음 접한 학습자를 위한 7-step 순방향 학습 경로입니다. 각 단계는 직전 단계가 익숙해진 뒤에 풀도록 구성했습니다. AND/XOR 게이트 → half-adder → MUX → 다비트 가산 → 플립플롭 → 카운터 — 마지막 카운터까지 통과하면 전형적인 VHDL 디자인의 구조(library/use, entity/architecture, signal/process, std_logic_vector + numeric_std)에 익숙해집니다.",
+  "steps": [
+    {
+      "ordering": 1,
+      "challengeSlug": "vhdl-gate-and",
+      "title": "게이트와 entity 구조",
+      "rationale": "library, use, entity, architecture 의 골격을 한 줄짜리 회로로 익힙니다. 키워드 `and`, 신호 할당 `<=` 만 알면 됩니다."
+    },
+    {
+      "ordering": 2,
+      "challengeSlug": "vhdl-gate-xor",
+      "title": "또 하나의 연산자",
+      "rationale": "Verilog 의 `^` 와 달리 VHDL 은 `xor` 키워드. half-adder 의 sum 비트를 미리 보는 단계."
+    },
+    {
+      "ordering": 3,
+      "challengeSlug": "vhdl-half-adder",
+      "title": "두 게이트 합성",
+      "rationale": "두 출력을 가진 첫 회로. `std.textio` 출력을 통한 채점 마커 형식도 자연스럽게 익힙니다."
+    },
+    {
+      "ordering": 4,
+      "challengeSlug": "vhdl-mux-2-to-1",
+      "title": "조건부 신호 할당",
+      "rationale": "VHDL idiom `y <= b when sel = '1' else a;` 도입. Verilog 의 `?:` 와 같지만 키워드 기반."
+    },
+    {
+      "ordering": 5,
+      "challengeSlug": "vhdl-adder-4bit",
+      "title": "다비트 산술과 numeric_std",
+      "rationale": "std_logic_vector 는 산술이 직접 안 되므로 unsigned 캐스팅이 필요. zero-extend (`'0' & a`) 로 carry-out 자리를 만드는 정통 패턴."
+    },
+    {
+      "ordering": 6,
+      "challengeSlug": "vhdl-dff-with-rst",
+      "title": "process + rising_edge",
+      "rationale": "VHDL 의 순차 회로 핵심 — `process(clk)` 안 `if rising_edge(clk) then ... end if;` 가 register 를 의미합니다."
+    },
+    {
+      "ordering": 7,
+      "challengeSlug": "vhdl-counter-4bit",
+      "title": "Capstone — 4비트 카운터",
+      "rationale": "내부 unsigned 레지스터로 산술, 출력은 std_logic_vector 로 캐스팅. 동기 reset + wrap-around 까지 — 본격 디지털 설계의 빌딩 블록."
+    }
+  ]
+}

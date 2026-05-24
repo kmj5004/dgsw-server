@@ -1,0 +1,53 @@
+{
+  "slug": "build-4bit-calculator",
+  "title": "4비트 계산기 만들기",
+  "language": "VERILOG",
+  "difficulty": "MEDIUM",
+  "estimatedHours": 3,
+  "goal": "기초 게이트와 1비트 가산기에서 시작해 4비트 ALU(가산·뺄셈·논리연산을 한 번에 하는 작은 계산기)까지 완성합니다. 마지막 capstone 챌린지를 통과하면 '내가 만든 ALU 가 동작한다' 는 증명이 끝납니다.",
+  "description": "본 path 는 디지털 시스템의 가장 기본적인 데이터 패스 — ALU — 를 손으로 만들어 보는 학습 경로입니다. 각 단계는 직전 단계의 출력을 직접 활용하므로, 빠뜨리지 말고 순서대로 푸세요. 마지막에 도달하면 4비트 입력 두 개와 2비트 op 코드로 add/sub/and/or 를 골라 수행하는 통합 회로가 완성됩니다.",
+  "steps": [
+    {
+      "ordering": 1,
+      "challengeSlug": "half-adder",
+      "title": "1비트 합·캐리",
+      "rationale": "가산의 가장 작은 단위. sum = XOR, carry = AND 라는 패턴이 모든 산술 회로의 시작입니다."
+    },
+    {
+      "ordering": 2,
+      "challengeSlug": "full-adder",
+      "title": "캐리 입력 추가",
+      "rationale": "다비트 가산기를 줄세우려면 한 단계의 carry-out 이 다음 단계의 cin 이 되어야 합니다. half-adder 두 개와 OR 한 개로 만들 수도 있습니다."
+    },
+    {
+      "ordering": 3,
+      "challengeSlug": "adder-4bit",
+      "title": "4비트 가산기",
+      "rationale": "full-adder 4 개를 직렬 연결한 ripple-carry adder. 캐리가 어떻게 전파되는지 직접 보세요. 5번째 비트는 carry-out 자리."
+    },
+    {
+      "ordering": 4,
+      "challengeSlug": "subtractor-4bit",
+      "title": "4비트 뺄셈 (두 보수)",
+      "rationale": "ALU 에서 SUB 는 ADD 와 같은 회로를 재활용합니다. 5비트로 확장한 뒤 빼면 borrow 비트가 자연스럽게 나옵니다."
+    },
+    {
+      "ordering": 5,
+      "challengeSlug": "comparator-1bit",
+      "title": "비교의 기본",
+      "rationale": "ALU 결과로 분기를 만들고 싶으면 비교가 필요합니다. 비록 capstone 에 직접 쓰지는 않지만, 본격 CPU 로 확장할 때 다음 단계가 됩니다."
+    },
+    {
+      "ordering": 6,
+      "challengeSlug": "mux-4-to-1",
+      "title": "연산 선택 (4-to-1 MUX)",
+      "rationale": "ALU 의 핵심은 \"여러 결과 중 하나만 골라서 출력\" — 그게 곧 멀티플렉서입니다. op 이 sel 역할을 합니다."
+    },
+    {
+      "ordering": 7,
+      "challengeSlug": "alu-4bit",
+      "title": "Capstone — 4비트 ALU",
+      "rationale": "이전 단계 모두를 합쳐 op[1:0] 으로 ADD/SUB/AND/OR 를 선택하는 4비트 ALU 를 완성합니다. 이게 동작하면 '내가 만든 작은 계산기' 가 끝났다고 봐도 됩니다."
+    }
+  ]
+}

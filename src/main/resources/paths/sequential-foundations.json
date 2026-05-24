@@ -1,0 +1,29 @@
+{
+  "slug": "sequential-foundations",
+  "title": "순차 회로 입문 — DFF 부터 FSM 까지",
+  "language": "VERILOG",
+  "difficulty": "HARD",
+  "estimatedHours": 2,
+  "goal": "조합 회로만 풀어온 학습자가 '시간이 지나면서 상태가 바뀌는' 순차 회로의 사고방식으로 넘어가도록 안내. 마지막 capstone 은 입력 비트열에서 \"1101\" 패턴을 검출하는 Moore FSM 입니다.",
+  "description": "조합 회로(`always @(*)`)는 입력만 보면 출력이 결정되지만, 순차 회로는 *clock 의 에지 때마다 다음 상태로 옮겨가는* 작동을 합니다. 본 path 는 가장 작은 단위인 D 플립플롭에서 시작해, 응용 한 단계(카운터)를 거쳐 본격적인 상태 기계(FSM)로 도달합니다.\n\n3단계만으로 짧지만 학습 곡선이 가파른 path 라 HARD 로 분류했습니다. 종이에 상태 다이어그램을 그려가며 풀기를 권장합니다.",
+  "steps": [
+    {
+      "ordering": 1,
+      "challengeSlug": "dff-with-rst",
+      "title": "한 비트 기억의 단위",
+      "rationale": "`always @(posedge clk)`, non-blocking 할당 `<=`, `output reg` — 순차 회로의 모든 문법이 D 플립플롭 한 줄에 들어 있습니다. 동기 reset 도 같이 익힙니다."
+    },
+    {
+      "ordering": 2,
+      "challengeSlug": "counter-4bit",
+      "title": "누산 — 상태가 점점 변한다",
+      "rationale": "DFF 4 개를 묶어 누산기를 만들면 \"매 cycle 마다 1 증가\" 같은 변화가 자연스럽게 표현됩니다. wrap-around (15→0) 도 직접 보세요."
+    },
+    {
+      "ordering": 3,
+      "challengeSlug": "seq-detect-1101",
+      "title": "Capstone — 1101 시퀀스 검출기",
+      "rationale": "Moore FSM 5-state 테이블. \"입력 비트열을 따라가며 매칭이 어디까지 됐는지\" 를 state 로 표현하는 발상이 핵심. 오버랩 처리까지 포함합니다."
+    }
+  ]
+}
