@@ -1,0 +1,17 @@
+{
+  "slug": "vhdl-mux-2-to-1",
+  "title": "2-to-1 MUX (VHDL)",
+  "description": "선택 신호 sel 에 따라 a 또는 b 를 출력하는 2:1 멀티플렉서 (VHDL).\n\n```\ny <= b when sel = '1' else a;\n```\n\nVHDL 의 `when-else` 는 conditional signal assignment — Verilog 의 삼항연산자 `sel ? b : a` 와 같은 역할입니다.\n\n진리표 (`a=0, b=1` 또는 `a=1, b=0` 인 경우):\n\n| a | b | sel | y |\n|---|---|---|---|\n| 0 | 1 | 0 | 0 |\n| 0 | 1 | 1 | 1 |\n| 1 | 0 | 0 | 1 |\n| 1 | 0 | 1 | 0 |",
+  "language": "VHDL",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": ["combinational", "mux", "stage-1", "vhdl"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"a\":0,\"b\":1,\"sel\":0}", "expectedJson": "{\"y\":0}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"a\":0,\"b\":1,\"sel\":1}", "expectedJson": "{\"y\":1}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"a\":1,\"b\":0,\"sel\":0}", "expectedJson": "{\"y\":1}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"a\":1,\"b\":0,\"sel\":1}", "expectedJson": "{\"y\":0}", "weight": 1}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "vhdl-adder-4bit",
+  "title": "4-bit Adder (VHDL)",
+  "description": "4비트 a 와 b 를 더해 5비트 합 s 를 출력하는 가산기 (VHDL).\n\n```vhdl\nuse ieee.numeric_std.all;\n...\ns <= std_logic_vector(unsigned('0' & a) + unsigned('0' & b));\n```\n\n핵심 개념:\n- `std_logic_vector` 는 비트 묶음. 산술이 직접 안 됨.\n- `unsigned` 로 캐스팅해야 `+` 가 정의됨 (numeric_std 라이브러리).\n- `'0' & a` 는 4비트를 5비트로 zero-extend — carry-out 비트 자리.\n- 결과를 다시 `std_logic_vector` 로 캐스팅해야 포트와 호환.",
+  "language": "VHDL",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "MEDIUM",
+  "tags": ["combinational", "arithmetic", "stage-2", "vhdl"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"a\":0,\"b\":0}",  "expectedJson": "{\"s\":0}",  "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"a\":1,\"b\":2}",  "expectedJson": "{\"s\":3}",  "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"a\":7,\"b\":8}",  "expectedJson": "{\"s\":15}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"a\":15,\"b\":15}","expectedJson": "{\"s\":30}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"a\":10,\"b\":5}", "expectedJson": "{\"s\":15}", "weight": 1},
+    {"ordering": 6, "stimulusJson": "{\"a\":15,\"b\":1}", "expectedJson": "{\"s\":16}", "weight": 1}
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "vhdl-dff-with-rst",
+  "title": "D Flip-Flop with Sync Reset (VHDL)",
+  "description": "clk 의 rising edge 마다 d 값을 q 로 옮기는 D 플립플롭 (VHDL). rst='1' 이면 동기 리셋.\n\n```vhdl\nprocess(clk)\nbegin\n    if rising_edge(clk) then\n        if rst = '1' then\n            q <= '0';\n        else\n            q <= d;\n        end if;\n    end if;\nend process;\n```\n\nVHDL 의 순차 회로 핵심:\n- `process(clk)` — sensitivity list. clk 변화에만 반응.\n- `rising_edge(clk)` — 상승 에지 검출 함수 (`std_logic_1164` 제공).\n- `if rising_edge then ... end if;` 안에서만 q 가 갱신되므로 q 는 자연스럽게 register 가 됨.\n- 비동기 리셋과 다름 — 리셋 자체도 clk edge 와 함께 평가됨.",
+  "language": "VHDL",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "EASY",
+  "tags": ["sequential", "flipflop", "stage-3", "vhdl"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"rst\":1,\"d\":1}", "expectedJson": "{\"q\":0}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"rst\":0,\"d\":1}", "expectedJson": "{\"q\":1}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"rst\":0,\"d\":0}", "expectedJson": "{\"q\":0}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"rst\":0,\"d\":1}", "expectedJson": "{\"q\":1}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"rst\":1}",         "expectedJson": "{\"q\":0}", "weight": 1}
+  ]
+}

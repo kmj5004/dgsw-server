@@ -1,0 +1,18 @@
+{
+  "slug": "vhdl-counter-4bit",
+  "title": "4-bit Synchronous Counter (VHDL)",
+  "description": "clk 의 rising edge 마다 1씩 증가하는 4비트 카운터 (VHDL). rst='1' 이면 0 으로 동기 리셋. 15 다음은 자연스럽게 0 으로 wrap.\n\n```vhdl\nuse ieee.numeric_std.all;\n...\nsignal cnt : unsigned(3 downto 0) := (others => '0');\n...\nprocess(clk)\nbegin\n    if rising_edge(clk) then\n        if rst = '1' then cnt <= (others => '0');\n        else              cnt <= cnt + 1;\n        end if;\n    end if;\nend process;\ncount <= std_logic_vector(cnt);\n```\n\n포인트:\n- 내부 레지스터는 `unsigned` 로 두면 `+ 1` 이 자연스럽게 정의됨.\n- 출력 포트는 `std_logic_vector` — 마지막에 캐스팅.\n- `(others => '0')` 는 \"모든 비트를 0\" 이라는 VHDL 의 구상 — 비트 수에 무관하게 0 초기화.",
+  "language": "VHDL",
+  "timeLimitNs": 100000000,
+  "wallTimeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "difficulty": "MEDIUM",
+  "tags": ["sequential", "counter", "stage-3", "vhdl"],
+  "testVectors": [
+    {"ordering": 1, "stimulusJson": "{\"rst\":1}",            "expectedJson": "{\"count\":0}", "weight": 1},
+    {"ordering": 2, "stimulusJson": "{\"rst\":0,\"after\":1}","expectedJson": "{\"count\":1}", "weight": 1},
+    {"ordering": 3, "stimulusJson": "{\"rst\":0,\"after\":4}","expectedJson": "{\"count\":4}", "weight": 1},
+    {"ordering": 4, "stimulusJson": "{\"rst\":0,\"after\":9}","expectedJson": "{\"count\":9}", "weight": 1},
+    {"ordering": 5, "stimulusJson": "{\"rst\":0,\"after\":16}","expectedJson": "{\"count\":0}","weight": 1}
+  ]
+}
